@@ -3,7 +3,7 @@ to generate a map run the following command: \
   
   H: Height of the map \
   W: Width of the map \
-  C: max number of collectible \
+  C: maximum number of collectible \
   \
   then check the file map.ber and copy the map
   \
