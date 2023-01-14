@@ -10,7 +10,7 @@ C = 10
 
 $(OUT):
 	@$(CC) $(LIB) $(SRC) -D W=$(W) -D H=$(H) -D C=$(C)
-	@$(OUT)
+	@$(OUT) > map.ber
 	@$(RM) $(OUT)
 
 all: $(OUT)
