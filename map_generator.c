@@ -1,389 +1,31 @@
 #include "Libft/libft.h"
+#include <time.h>
 #ifndef H
 #define H 100;
 #endif
 #ifndef W
 #define W 100;
 #endif
-#ifndef C
-#define C 10;
-#endif
 
 int main(void)
 {
+	srand(time(0));
 	int height = H;
 	int width = W;
 	int px = 1;
 	int py = 1;
-	int Collectible = C;
-	int Exit = 1;
-	int col;
-	char *str = my_malloc((height * width + 1) * sizeof(char));
+	char *str = my_malloc((height * width + 1));
 
 	int i = 0;
-	while (i < height * width)
+	int j = 0;
+	while (i < width * height)
 	{
-		if (i < width || (i + 1) % width == 0 || i % width == 0 || i > height * (width - 1))
+		if (i < width || (i + 1) % width == 0 || i % width == 0 || i / width >= height - 1)
 			str = ft_strjoin(str, "1");
 		else
 			str = ft_strjoin(str, "8");
 		i++;
 	}
-	i = px % width + py * width;
-	while (i < height * width)
-	{
-		if (i / width == py && i % width == px)
-		{
-			str[i] = 'P';
-			int j = i;
-			j++;
-			int pos = i;
-			while (j < width * height)
-			{
-				int move = rand() % 4;
-				if (move == 0 && (pos + 1) % width < width - 1 && (pos + 1) < width * (height - 1) && str[pos + 1] == '8')
-				{
-					col = rand() % 10;
-					if (col && Collectible > 1 )
-					{
-	
-						str[pos + 1] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos + 1] = '0';
-					pos++;
-				}
-				if (move == 1 && pos + width < width * height && (pos + width) < width * (height - 1) && str[pos + width] == '8')
-				{
-					col = rand() % 2;
-					if (col && Collectible > 1 )
-					{
-						str[pos + width] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos + width] = '0';
-					pos += width;
-				}
-				if (move == 2 && (pos - 1) % width > 1 && (pos - 1) < width * (height - 1) && str[pos - 1] == '8')
-				{
-					col = rand() % 10;
-					if (col && Collectible > 1 )
-					{
-						str[pos - 1] = 'C';
-						Collectible--;
-					}
-					else
-						str[pos - 1] = '0';
-					pos--;
-				}
-				if (move == 3 && (pos - width) % width > width && (pos - width) / width < height && str[pos - width] == '8')
-				{
-					col = rand() % 2;
-					if (col && Collectible > 1 )
-					{
-						str[pos - width] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos - width] = '0';
-					pos -= width;
-				}
-				j++;
-			}
-		}
-		i++;
-	}
-
-	i = height * width - width;
-	while (i > 0)
-	{
-		if (i / width == py && i % width == px)
-		{
-			int j = i;
-			j++;
-			int pos = i;
-			while (j < width * height)
-			{
-				int move = rand() % 4;
-				// ft_printf("(%d, %d)\n", move % width, move / height);
-				if (move == 0 && (pos + 1) % width < width - 1 && (pos + 1) < width * (height - 1) && str[pos + 1] == '8')
-				{
-					col = rand() % 2;
-					if (col && Collectible > 1 )
-					{
-						str[pos + 1] = 'C';
-						Collectible--;
-			
-					}
-					else
-						str[pos + 1] = '0';
-					pos++;
-				}
-				if (move == 1 && pos + width < width * height && (pos + width) < width * (height - 1) && str[pos + width] == '8')
-				{
-					col = rand() % 2;
-					if (col && Collectible > 1 )
-					{
-						str[pos + width] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos + width] = '0';
-					pos += width;
-				}
-				if (move == 2 && (pos - 1) % width > 1 && (pos - 1) < width * (height - 1) && str[pos - 1] == '8')
-				{
-					col = rand() % 2;
-					if ( col && Collectible > 1 )
-					{
-						str[pos - 1] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos - 1] = '0';
-					pos--;
-				}
-				if (move == 3 && (pos - width) % width > width && (pos - width) / width < height && str[pos - width] == '8')
-				{
-					col = rand() % 2;
-					if ( col && Collectible > 1 )
-					{
-						str[pos - width] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos - width] = '0';
-					pos -= width;
-				}
-				j++;
-			}
-		}
-		i--;
-	}
-	i = px % width + py * width;
-
-	while (i < height * width)
-	{
-		if (i / width == py && i % width == px)
-		{
-			int j = i;
-			j++;
-			int pos = i;
-			while (j < width * height)
-			{
-				int move = rand() % 4;
-				// ft_printf("(%d, %d)\n", move % width, move / height);
-				if (move == 0 && (pos + 1) % width < width - 1 && (pos + 1) < width * (height - 1) && str[pos + 1] == '8')
-				{
-					col = rand() % 2;
-					if ( col && Collectible > 1 )
-					{
-						str[pos + 1] = 'C';
-				Collectible--;
-					}
-					else
-						str[pos + 1] = '0';
-					pos++;
-				}
-				if (move == 1 && pos + width < width * height && (pos + width) < width * (height - 1) && str[pos + width] == '8')
-				{
-					col = rand() % 2;
-					if ( col && Collectible > 1 )
-					{
-						str[pos + width] = 'C';
-						Collectible--;
-				
-					}
-					else
-						str[pos + width] = '0';
-					pos += width;
-				}
-				if (move == 2 && (pos - 1) % width > 1 && (pos - 1) < width * (height - 1) && str[pos - 1] == '8')
-				{
-					col = rand() % 2;
-					if (col && Collectible > 1 )
-					{
-						str[pos - 1] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos - 1] = '0';
-					pos--;
-				}
-				if (move == 3 && (pos - width) % width > width && (pos - width) / width < height && str[pos - width] == '8')
-				{
-					col = rand() % 2;
-					if ( col && Collectible > 1 )
-					{
-						str[pos - width] = 'C';
-						Collectible--;
-					
-					}
-					else
-						str[pos - width] = '0';
-					pos -= width;
-				}
-				j++;
-			}
-		}
-		i++;
-	}
-	i = height * width - width;
-	while (i > 0)
-	{
-		if (i / width == py && i % width == px)
-		{
-			// str[i] = 'P';
-			int j = i;
-			j++;
-			int pos = i;
-			while (j < width * height)
-			{
-				int move = rand() % 4;
-				// ft_printf("(%d, %d)\n", move % width, move / height);
-				if (move == 0 && (pos + 1) % width < width - 1 && (pos + 1) < width * (height - 1) && str[pos + 1] == '8')
-				{
-					col = rand() % 2;
-					if ( col && Collectible > 1 )
-					{
-						str[pos + 1] = 'C';
-						Collectible--;
-						
-					}
-					else
-						str[pos + 1] = '0';
-					pos++;
-				}
-				if (move == 1 && pos + width < width * height && (pos + width) < width * (height - 1) && str[pos + width] == '8')
-				{
-					col = rand() % 2;
-					if (col && Collectible > 1 )
-					{
-						str[pos + width] = 'C';
-						Collectible--;
-						
-					}
-					else
-						str[pos + width] = '0';
-					pos += width;
-				}
-				if (move == 2 && (pos - 1) % width > 1 && (pos - 1) < width * (height - 1) && str[pos - 1] == '8')
-				{
-					col = rand() % 2;
-					if (col && Collectible > 1 )
-					{
-						str[pos - 1] = 'C';
-						Collectible--;
-				
-					}
-					else
-						str[pos - 1] = '0';
-					pos--;
-				}
-				if (move == 3 && (pos - width) % width > width && (pos - width) / width < height && str[pos - width] == '8')
-				{
-					col = rand() % 2;
-					if ( col && Collectible > 1 )
-					{
-						str[pos - width] = 'C';
-						Collectible--;
-
-					}
-					else
-						str[pos - width] = '0';
-					pos -= width;
-				}
-				j++;
-			}
-		}
-		i--;
-	}
-	i = px % width + py * width + 1;
-
-	while (i < height * width)
-	{
-		if (i / width == py && i % width == px)
-		{
-			int j = i;
-			j++;
-			int pos = i;
-			while (j < width * height)
-			{
-				int move = rand() % 4;
-				// ft_printf("(%d, %d)\n", move % width, move / height);
-				if (move == 0 && (pos + 1) % width < width - 1 && (pos + 1) < width * (height - 1) && str[pos + 1] == '8')
-				{
-					col = rand() % 2;
-					if (Exit )
-					{
-						str[pos + 1] = 'E';
-						Collectible--;
-						break;
-					}
-					else
-						str[pos + 1] = '0';
-					pos++;
-				}
-				if (move == 1 && pos + width < width * height && (pos + width) < width * (height - 1) && str[pos + width] == '8')
-				{
-					col = rand() % 2;
-					if (Exit )
-					{
-						str[pos + width] = 'E';
-						Collectible--;
-						break;
-					}
-					else
-						str[pos + width] = '0';
-					pos += width;
-				}
-				if (move == 2 && (pos - 1) % width > 1 && (pos - 1) < width * (height - 1) && str[pos - 1] == '8')
-				{
-					col = rand() % 2;
-					if (Exit )
-					{
-						str[pos - 1] = 'E';
-						Collectible--;
-						break;
-					}
-					else
-						str[pos - 1] = '0';
-					pos--;
-				}
-				if (move == 3 && (pos - width) % width > width && (pos - width) / width < height && str[pos - width] == '8')
-				{
-					col = rand() % 2;
-					if (Exit && j < (width * height) / abs(1 - Collectible))
-					{
-						str[pos - width] = 'E';
-						Collectible--;
-						break;
-					}
-					else
-						str[pos - width] = '0';
-					pos -= width;
-				}
-				j++;
-				if (rand() % 10 > 5 && Exit)
-				{
-					str[pos] = 'E';
-					Exit--;
-				}
-			}
-		}
-		i++;
-	}
-	i = px % width + py * width;
-	str[i] = 'P';
 	i = 0;
 	while (i < height * width)
 	{
@@ -393,16 +35,126 @@ int main(void)
 			str[i] = str1[num];
 		i++;
 	}
-	i = 0;
-	// ft_printf("\n");
-	// str = ft_strjoin(str, "\n");
-	i = 0;
-	while (str[i])
+	////////////////////////
+	i = px % width + py * width;
+	str[i] = 'P'; // add player
+	///////////////////////
+	i++;
+	while (i % width < width * 0.1)
 	{
-		ft_printf("%c", str[i]);
-		if ((i + 1) % width == 0)
-			ft_printf("\n");
+		str[i] = '0';
 		i++;
 	}
-	// while(1);
+	// str[i] = 'C';
+	j = i;
+	while (j % width < width * 0.4)
+	{
+		str[j] = '0';
+		j++;
+	}
+
+	while (i / width < height * 0.15)
+	{
+		str[i] = '0';
+		i += width;
+	}
+	str[j] = 'C';
+	j = i - width;
+	while (j % width > 3)
+	{
+		str[j] = '0';
+		j--;
+	}
+	while (i % width < width * 0.35)
+	{
+		str[i] = '0';
+		i++;
+	}
+	str[j] = 'C';
+	j = i + 2 * width;
+	while (j % width < width * 0.6)
+	{
+		str[j] = '0';
+		j++;
+	}
+	while (i / width < height * 0.55)
+	{
+		str[i] = '0';
+		i += width;
+	}
+	str[j] = 'C';
+	j = i - width;
+	while (j % width > width * 0.1)
+	{
+		str[j] = '0';
+		j--;
+	}
+	str[j] = 'C';
+	j += width + 1;
+	while (j / width < height * 0.7 && j % width < width - 2)
+	{
+		str[j] = '0';
+		j += width;
+	}
+
+	while (i % width < width * 0.65 && i % width < width - 2)
+	{
+		str[i] = '0';
+		i++;
+	}
+	str[j] = 'C';
+	j = i + 2 * width;
+	while (j % width < width * 0.9 && j % width < width - 2)
+	{
+		str[j] = '0';
+		j++;
+	}
+
+	while (i / width < height * 0.6 && i % width < width - 2)
+	{
+		str[i] = '0';
+		i += width;
+	}
+	while (i % width < width * 0.8 && i % width < width - 2)
+	{
+		str[i] = '0';
+		i++;
+	}
+	while (i / width < height * 0.8)
+	{
+		str[i] = '0';
+		i += width;
+	}
+	str[j] = 'C';
+	j = i - width;
+	while (j % width > width * 0.1 && j % width < width - 2)
+	{
+		str[j] = '0';
+		j--;
+	}
+	str[j] = 'C';
+	j = i - width;
+	while (j / width > height * 0.1)
+	{
+		str[j] = '0';
+		j -= width;
+	}
+	str[j] = 'C';
+	while (i % width < width * 0.95 && i % width < width - 2)
+	{
+		str[i] = '0';
+		i++;
+	}
+	str[i] = 'E';
+	//=========================================================================
+	// printf map
+	i = 0;
+	int fd = open("./map.ber", O_RDWR | O_CREAT | O_TRUNC, 0777);
+	while (str && str[i])
+	{
+		write(fd, str + i, 1);
+		if ((i + 1) % width == 0)
+			write(fd, "\n", 1);
+		i++;
+	}
 }

@@ -6,18 +6,18 @@ OUT = ./a.out
 RM = rm -rf
 H = 100
 W = 100
-C = 10
 
 $(OUT):
-	@$(CC) $(LIB) $(SRC) -D W=$(W) -D H=$(H) -D C=$(C)
-	@$(OUT) > map.ber
+	@$(CC) $(LIB) $(SRC) -D W=$(W) -D H=$(H)
+	@$(OUT)
 	@$(RM) $(OUT)
 
 all: $(OUT)
 
 san:$(SRC)
-	@$(CC) $(SAN) $(LIB) $(SRC)
-
+	@$(CC) $(SAN) $(LIB) $(SRC) -D W=$(W) -D H=$(H)
+	@$(OUT)
+	@$(RM) $(OUT)
 clean:
 	@$(RM) $(OUT)
 
