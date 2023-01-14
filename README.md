@@ -4,7 +4,7 @@ to generate a map run the following command: \
   H: Height of the map \
   W: Width of the map \
   \
-  then check the file map.ber and copy the map
+  then check the file map.ber and copy its content
   \
   \
   this program generate random valid maps
